@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Voices</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://use.typekit.net/xzh5etg.css">
+
+  <style>
+    /* Make sure map has height */
+    #form {
+      height: 700px;
+      width: 95%;
+      margin: 20px auto;
+      
+      
+    }
+  </style>
+  <header>
+     <!-- SAME dropdown UI as index.html -->
+    <div class="profile-menu">
+      <button id="profileButton" onclick="toggleProfileMenu()">
+        <span id="currentUser">Profile</span> ▼
+      </button>
+
+      <div id="profileDropdown" class="profile-dropdown">
+        <input
+          id="usernameInput"
+          placeholder="Enter name"
+          autocomplete="new-password"
+          autocorrect="off"
+          autocapitalize="none"
+          spellcheck="false"
+          name="profile_name_input_books"
+        />
+        <button onclick="saveUser()">Save Profile</button>
+
+        <hr />
+        <p>Theme</p>
+        <button onclick="setTheme('light')">Light</button>
+        <button onclick="setTheme('dark')">Dark</button>
+
+        <hr />
+        <button onclick="logout()">Sign Out</button>
+      </div>
+    </div>
+
+    <h1>fast fashion</h1>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="intro.html">Introduction</a>
+    <a href="students.html" class="active">Student Voices</a>
+    <a href="game.html">Game!</a>
+    <a href="resources.html">Resources</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="calculator.html">Cost Calculator</a>
+  </nav>
+
+</header>
+
+</head>
+<body>
+
+  <h1>Student Survey on Personal Environmental Impact:</h1>
+  <div id="form"><iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__T5ZU8FURVJHSFI3T0NYS09UNE5FRFpDSTFTSE1KWC4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+</div>
+
+  
+</body>
+</html>
