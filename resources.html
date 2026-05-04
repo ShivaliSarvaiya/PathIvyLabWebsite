@@ -5,10 +5,20 @@
 <title>Resources</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://use.typekit.net/xzh5etg.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 </head>
 
 <body>
-
+<style>
+    /* Make sure map has height */
+    #map {
+      height: 700px;
+      width: 95%;
+      margin: 20px auto;
+      
+      
+    }
+  </style>
 <header>
 
   <!-- SAME dropdown UI as index.html -->
@@ -57,6 +67,59 @@
 
 <div class="grid-container">
 
+    <div class="grid-item main-2">
+    <h3>Start Your  Sustainable Journey!</h3>
+  <div class="section-summary">
+    <p>Over here you'll find various resources to help you start reducing your environmental impact, such as videos, articles, and more. Explore the map below to find thrift stores and recycling centers in Seattle, WA!</p>      
+  </div>
 
-    
 </div>
+        </div>
+
+        <h1>Thrift Stores in Seattle, WA</h1>
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script>
+    // Create map centered on Seattle
+    var map = L.map('map').setView([47.6062, -122.3321], 12);
+
+    // Load OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Bookstores
+   var stores = [
+  ["Goodwill Seattle (Dearborn)", 47.59557, -122.32716],
+  ["Buffalo Exchange (Capitol Hill)", 47.61433, -122.32072],
+  ["Crossroads Trading Co. (University District)", 47.66196, -122.31347],
+  ["Out of the Closet (Capitol Hill)", 47.62305, -122.31723],
+  ["Value Village (Crown Hill)", 47.69092, -122.37631],
+  ["Lifelong Thrift Store (Capitol Hill)", 47.61955, -122.32144],
+  ["Red Light Vintage & Costume (U-District)", 47.66137, -122.31395],
+  ["Goodwill Seattle (University District)", 47.66125, -122.31389]
+  ["Seattle Recycling & Disposal Station (South Transfer Station)", 47.52942, -122.26982],
+  ["North Transfer Station (Recycling & Disposal)", 47.69894, -122.34461],
+  ["Recology Store (SoDo)", 47.58041, -122.33277],
+  ["Friendly Earth International (Recycling Center)", 47.58602, -122.32945],
+  ["1 Green Planet (Electronics Recycling)", 47.62051, -122.34818],
+  ["Total Reclaim (Electronics Recycling)", 47.58472, -122.33204],
+  ["Styro Recycle (Styrofoam Recycling)", 47.54846, -122.32392],
+  ["Seattle Public Utilities Recycling Drop-Off (Magnolia)", 47.64822, -122.39946]
+];
+
+    // Add markers
+    for (var i = 0; i < stores.length; i++) {
+      L.marker([stores[i][1], stores[i][2]])
+        .addTo(map)
+        .bindPopup("<b>" + stores[i][0] + "</b>");
+    }
+  </script>
+<script src="script.js"></script>
+</body>
+</html>
+
+
