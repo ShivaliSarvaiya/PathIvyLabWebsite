@@ -1,148 +1,101 @@
 let score = 0;
 let currentLevel = 0;
 let choicesMade = [];
+let locked = false;
 
 const levels = [
   {
     title: "Level 1: Material",
     description: "Choose what the shirt is made of:",
     options: [
-      {
-        text: "Cotton (+2)",
-        effect: 2,
-        desc: "Cotton is natural but uses lots of water and land."
-      },
-      {
-        text: "Polyester (+1)",
-        effect: 1,
-        desc: "Made from fossil fuels and releases microplastics."
-      },
-      {
-        text: "Recycled Fabric (+3)",
-        effect: 3,
-        desc: "Reuses materials and reduces waste significantly."
-      }
+      { text: "Cotton (+2)", effect: 2, desc: "High water use, natural fiber." },
+      { text: "Polyester (+1)", effect: 1, desc: "Plastic-based, microplastics." },
+      { text: "Recycled (+3)", effect: 3, desc: "Lowest environmental impact." }
     ]
   },
   {
     title: "Level 2: Production",
-    description: "How is the shirt made?",
+    description: "How is it made?",
     options: [
-      {
-        text: "Fast Fashion (+1)",
-        effect: 1,
-        desc: "Cheap production, unsafe labor, high pollution."
-      },
-      {
-        text: "Ethical Production (+3)",
-        effect: 3,
-        desc: "Fair wages and lower environmental impact."
-      }
+      { text: "Fast Fashion (+1)", effect: 1, desc: "Cheap labor, high pollution." },
+      { text: "Ethical (+3)", effect: 3, desc: "Fair wages, cleaner production." }
     ]
   },
   {
     title: "Level 3: Transport",
-    description: "How is it transported?",
+    description: "Shipping method?",
     options: [
-      {
-        text: "Airplane (+1)",
-        effect: 1,
-        desc: "Fast but very high carbon emissions."
-      },
-      {
-        text: "Ship (+3)",
-        effect: 3,
-        desc: "Slower but much lower emissions."
-      }
+      { text: "Airplane (+1)", effect: 1, desc: "Fast but high emissions." },
+      { text: "Ship (+3)", effect: 3, desc: "Slower but eco-friendly." }
     ]
   },
   {
     title: "Level 4: Buying",
-    description: "How do you buy it?",
+    description: "Shopping style?",
     options: [
-      {
-        text: "Fast Fashion (+1)",
-        effect: 1,
-        desc: "Encourages overbuying and waste."
-      },
-      {
-        text: "Buy Fewer Quality Items (+2)",
-        effect: 2,
-        desc: "Longer-lasting clothes reduce waste."
-      },
-      {
-        text: "Thrifted (+3)",
-        effect: 3,
-        desc: "No new production required."
-      }
+      { text: "Fast Fashion (+1)", effect: 1, desc: "Overconsumption." },
+      { text: "Quality (+2)", effect: 2, desc: "Longer lasting clothes." },
+      { text: "Thrifted (+3)", effect: 3, desc: "No new production." }
     ]
   },
   {
     title: "Level 5: Use",
     description: "How is it used?",
     options: [
-      {
-        text: "Rarely Worn (+1)",
-        effect: 1,
-        desc: "Short lifespan increases waste."
-      },
-      {
-        text: "Regularly Worn (+2)",
-        effect: 2,
-        desc: "Better cost per wear."
-      },
-      {
-        text: "Repaired/Restyled (+3)",
-        effect: 3,
-        desc: "Extends life and reduces waste."
-      }
+      { text: "Rarely Worn (+1)", effect: 1, desc: "High waste per use." },
+      { text: "Regular (+2)", effect: 2, desc: "Better lifespan." },
+      { text: "Repaired (+3)", effect: 3, desc: "Extends clothing life." }
     ]
   },
   {
     title: "Level 6: End of Life",
-    description: "What happens to it?",
+    description: "What happens next?",
     options: [
-      {
-        text: "Thrown Away (+1)",
-        effect: 1,
-        desc: "Ends up in landfill and pollutes."
-      },
-      {
-        text: "Donated (+2)",
-        effect: 2,
-        desc: "Gives clothing a second life."
-      },
-      {
-        text: "Upcycled (+3)",
-        effect: 3,
-        desc: "Transforms into something new, minimal waste."
-      }
+      { text: "Thrown Away (+1)", effect: 1, desc: "Landfill waste." },
+      { text: "Donated (+2)", effect: 2, desc: "Reused by others." },
+      { text: "Upcycled (+3)", effect: 3, desc: "Transformed into new items." }
     ]
   }
 ];
 
 function loadLevel() {
+  if (currentLevel >= levels.length) {
+    showResults();
+    return;
+  }
+
+  locked = false;
+
   const level = levels[currentLevel];
 
-  document.getElementById("title").innerText = level.title;
-  document.getElementById("description").innerText = level.description;
+  const title = document.getElementById("title");
+  const desc = document.getElementById("description");
+  const choices = document.getElementById("choices");
 
-  const choicesDiv = document.getElementById("choices");
-  choicesDiv.innerHTML = "";
+  title.innerText = level.title;
+  desc.innerText = level.description;
+  choices.innerHTML = "";
 
   level.options.forEach(option => {
     const btn = document.createElement("button");
+
     btn.innerText = option.text;
 
-    btn.onclick = () => handleChoice(option);
+    btn.onclick = () => {
+      if (locked) return;
+      locked = true;
+      handleChoice(option);
+    };
 
-    choicesDiv.appendChild(btn);
+    choices.appendChild(btn);
   });
 }
 
 function handleChoice(option) {
   score += option.effect;
   choicesMade.push(option);
+
+  updateMeter();
 
   document.getElementById("choices").innerHTML = `
     <p><strong>You chose:</strong> ${option.text}</p>
@@ -163,30 +116,47 @@ function nextLevel() {
   loadLevel();
 }
 
-function showResults() {
-  let rating = "";
+function updateMeter() {
+  const meter = document.getElementById("meterFill");
+  if (!meter) return;
 
-  if (score <= 8) rating = "High Environmental Impact ❌";
-  else if (score <= 13) rating = "Medium Impact ⚠️";
-  else rating = "Low Environmental Impact ✅";
+  const percent = Math.min((score / 18) * 100, 100);
+  meter.style.width = percent + "%";
+}
+
+function showResults() {
+  const title = document.getElementById("title");
+  const desc = document.getElementById("description");
+  const choices = document.getElementById("choices");
+
+  let result =
+    score <= 8 ? "High Environmental Impact ❌" :
+    score <= 13 ? "Medium Impact ⚠️" :
+    "Low Environmental Impact 🌱";
+
+  let personality =
+    score <= 8 ? "Fast Fashion Consumer ⚡" :
+    score <= 13 ? "Balanced Shopper ⚖️" :
+    "Sustainable Fashion Hero 🌍";
 
   let breakdown = choicesMade.map(c =>
     `<p><strong>${c.text}</strong>: ${c.desc}</p>`
   ).join("");
 
-  document.querySelector(".game-box").innerHTML = `
-    <h1>Final Results</h1>
-    <h2>${rating}</h2>
+  title.innerText = "Final Results";
+
+  desc.innerHTML = `
+    <h2>${result}</h2>
+    <h2>${personality}</h2>
     <p><strong>Total Score:</strong> ${score}</p>
 
-    <h3>Your Choices:</h3>
+    <h3>Your Journey</h3>
     ${breakdown}
 
-    <p>
-      This shows how every stage—from material to disposal—impacts the environment.
-    </p>
+    <button onclick="location.reload()">Play Again 🔁</button>
   `;
+
+  choices.innerHTML = "";
 }
 
-// start game
 loadLevel();
