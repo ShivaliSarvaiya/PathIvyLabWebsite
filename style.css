@@ -208,19 +208,11 @@ text-align:center;
 /* Colored genre backgrounds */
 
 .romance{
-background:#ffd6e7;
-}
-
-.historical{
-background:#e3d4ff;
-}
-
-.mystery{
-background:#ffb3b3;
+background:#163128;
 }
 
 .fantasy{
-background:#cfe5ff;
+background:#163128;
 }
 
 
@@ -231,15 +223,20 @@ display:flex;
 flex-wrap:wrap;
 justify-content:center;
 gap:25px;
+color: white;
+grid-template-columns: repeat(4, 1fr);
 }
 
 
 /* Individual book card */
 
 .book-item{
-width:160px;
-text-align:center;
+width: calc(25% - 25px);
+  box-sizing: border-box;
+  text-align: center;
+  flex-shrink: 0;
 }
+
 
 
 /* Book cover images */
