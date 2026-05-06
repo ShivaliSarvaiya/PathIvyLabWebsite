@@ -583,6 +583,12 @@ p {
     text-align: center;
 }
 
+.support-4 {
+    grid-column: 1 / span 2;
+    grid-row: 5;
+    background-color: #4d8574;
+}
+
 .main-3 {
     grid-column: 2 / span 2;
     grid-row: 2;
@@ -679,6 +685,55 @@ button:hover {
     height: auto;
     object-fit: cover;
     border-radius: 10px;
+}
+
+
+.image1-card {
+  grid-column: 3;
+  grid-row: 5;
+
+  position: relative;
+  width: 100%;
+  height: 550px;
+  aspect-ratio: 4 / 3; /* keeps nice shape */
+
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #4d8574;
+}
+
+.image1-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.image1-card:hover img {
+  opacity: 0.4;
+}
+
+.image1-card:hover .overlay {
+  opacity: 1;
 }
 
 details.card {
@@ -815,11 +870,11 @@ details.card p {
 }
 
 /* fade animation */
-.fade {
+.fade1 {
   animation: fadeIn 0.4s ease;
 }
 
-@keyframes fadeIn {
+@keyframes fade1In {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
