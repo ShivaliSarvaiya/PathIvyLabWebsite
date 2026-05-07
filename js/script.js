@@ -101,7 +101,7 @@ function handleChoice(option) {
     <p><strong>You chose:</strong> ${option.text}</p>
     <p>${option.desc}</p>
     <p><strong>Impact:</strong> +${option.effect}</p>
-    <button onclick="nextLevel()">Next ➡️</button>
+    <button onclick="nextLevel()">Next </button>
   `;
 }
 
