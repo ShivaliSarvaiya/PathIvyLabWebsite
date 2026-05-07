@@ -77,6 +77,13 @@ font-style: italic;
 font-size: 300%;
 }
 
+.h21{
+ font-family: "abril-display", serif;
+font-weight: 400;
+font-style: italic;
+font-size: 300%;
+}
+
 
 button{
   background:#098541;
@@ -345,13 +352,13 @@ body.dark nav a.active{
 }
 body.dark .card{
   background:#1e293b;
-  color:#e5e7eb;
+  color:black;
   box-shadow:0 15px 40px rgba(0,0,0,0.35);
 }
 body.dark input{
   background:#0b1222;
-  color:#e5e7eb;
-  border-color:#334155;
+  color:black;
+  border-color:black;
 }
 body.dark button{
   background:#3556d8;
@@ -363,7 +370,32 @@ body.dark .profile-dropdown{
   background:#0b1222;
   color:#e5e7eb;
   box-shadow:0 8px 24px rgba(0,0,0,0.6);
+  
+}body.dark .p1{
+  color: rgb(255, 255, 255);
+
+}body.dark p{
+  color: black;
 }
+body.dark li{
+  color: black;
+}
+body.dark h2 {
+    color:white;
+}
+
+body.dark .h21 {
+    color:rgb(0, 0, 0);
+}
+
+body.dark summary {
+    color: white;
+}
+
+body.dark .li1{
+  color: white;
+}
+
 h3 {
     padding: 20px;
     font-size: 1.4rem;
@@ -407,6 +439,14 @@ p {
     margin-bottom: 12px;
 }
 
+.p1 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.li1 {
+    color: black;
+}
 .home-grid-container {
     display: grid;
     grid-gap: 10px;
