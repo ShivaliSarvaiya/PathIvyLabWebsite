@@ -10,7 +10,8 @@ function getUserKey() {
 
 // ================= DROPDOWN =================
 function toggleProfileMenu() {
-  document.getElementById("profileDropdown").classList.toggle("show");
+  const dropdown = document.getElementById("profileDropdown");
+  if (dropdown) dropdown.classList.toggle("show");
 }
 
 document.addEventListener("click", (e) => {
@@ -27,25 +28,34 @@ document.addEventListener("click", (e) => {
 // ================= USER =================
 function saveUser() {
   const input = document.getElementById("usernameInput");
-  const name = input.value.trim();
+  if (!input) return;
 
+  const name = input.value.trim();
   if (!name) return;
 
   localStorage.setItem("username", name);
-  document.getElementById("currentUser").textContent = name;
+
+  const currentUser = document.getElementById("currentUser");
+  if (currentUser) currentUser.textContent = name;
 
   input.value = "";
-  document.getElementById("profileDropdown").classList.remove("show");
+
+  const dropdown = document.getElementById("profileDropdown");
+  if (dropdown) dropdown.classList.remove("show");
 
   loadTheme();
-  loadBooks();
+
+  if (document.getElementById("books")) {
+    loadBooks();
+  }
 }
 
 function loadUser() {
   const name = localStorage.getItem("username");
+  const currentUser = document.getElementById("currentUser");
 
-  if (name) {
-    document.getElementById("currentUser").textContent = name;
+  if (name && currentUser) {
+    currentUser.textContent = name;
   }
 }
 
@@ -54,15 +64,15 @@ function logout() {
   location.reload();
 }
 
-// ================= THEME (GLOBAL FIXED) =================
+// ================= THEME =================
 function setTheme(mode) {
+  localStorage.setItem("theme", mode);
+
   if (mode === "dark") {
     document.body.classList.add("dark");
   } else {
     document.body.classList.remove("dark");
   }
-
-  localStorage.setItem("theme", mode);
 }
 
 function loadTheme() {
@@ -95,28 +105,30 @@ function addBook() {
   const user = getCurrentUser();
   if (!user) return;
 
-  const title = document.getElementById("title").value.trim();
-  const store = document.getElementById("genre").value.trim();
-  const image = document.getElementById("image").value.trim();
-  const list = document.getElementById("list").value;
+  const title = document.getElementById("title");
+  const store = document.getElementById("genre");
+  const image = document.getElementById("image");
+  const list = document.getElementById("list");
 
-  if (!title) return;
+  if (!title || !store || !image || !list) return;
 
   const item = {
     id: Date.now(),
-    title,
-    store,
-    image,
-    list
+    title: title.value.trim(),
+    store: store.value.trim(),
+    image: image.value.trim(),
+    list: list.value
   };
+
+  if (!item.title) return;
 
   const items = getItems();
   items.push(item);
   saveItems(items);
 
-  document.getElementById("title").value = "";
-  document.getElementById("genre").value = "";
-  document.getElementById("image").value = "";
+  title.value = "";
+  store.value = "";
+  image.value = "";
 
   loadBooks();
 }
@@ -165,5 +177,8 @@ function deleteItem(id) {
 document.addEventListener("DOMContentLoaded", () => {
   loadUser();
   loadTheme();
-  loadBooks();
+
+  if (document.getElementById("books")) {
+    loadBooks();
+  }
 });
