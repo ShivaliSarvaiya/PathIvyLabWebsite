@@ -8,52 +8,52 @@ const levels = [
     title: "Level 1: Material",
     description: "Choose what the shirt is made of:",
     options: [
-      { text: "Cotton (+2)", effect: 2, desc: "High water use, natural fiber." },
-      { text: "Polyester (+1)", effect: 1, desc: "Plastic-based, microplastics." },
-      { text: "Recycled (+3)", effect: 3, desc: "Lowest environmental impact." }
+      { text: "Cotton", effect: 2, desc: "High water use, natural fiber." },
+      { text: "Polyester", effect: 1, desc: "Plastic-based, microplastics." },
+      { text: "Recycled", effect: 3, desc: "Lowest environmental impact." }
     ]
   },
   {
     title: "Level 2: Production",
     description: "How is it made?",
     options: [
-      { text: "Fast Fashion (+1)", effect: 1, desc: "Cheap labor, high pollution." },
-      { text: "Ethical (+3)", effect: 3, desc: "Fair wages, cleaner production." }
+      { text: "Fast Fashion", effect: 1, desc: "Cheap labor, high pollution." },
+      { text: "Ethical", effect: 3, desc: "Fair wages, cleaner production." }
     ]
   },
   {
     title: "Level 3: Transport",
     description: "Shipping method?",
     options: [
-      { text: "Airplane (+1)", effect: 1, desc: "Fast but high emissions." },
-      { text: "Ship (+3)", effect: 3, desc: "Slower but eco-friendly." }
+      { text: "Airplane", effect: 1, desc: "Fast but high emissions." },
+      { text: "Ship", effect: 3, desc: "Slower but eco-friendly." }
     ]
   },
   {
     title: "Level 4: Buying",
     description: "Shopping style?",
     options: [
-      { text: "Fast Fashion (+1)", effect: 1, desc: "Overconsumption." },
-      { text: "Quality (+2)", effect: 2, desc: "Longer lasting clothes." },
-      { text: "Thrifted (+3)", effect: 3, desc: "No new production." }
+      { text: "Fast Fashion", effect: 1, desc: "Overconsumption." },
+      { text: "Quality", effect: 2, desc: "Longer lasting clothes." },
+      { text: "Thrifted", effect: 3, desc: "No new production." }
     ]
   },
   {
     title: "Level 5: Use",
     description: "How is it used?",
     options: [
-      { text: "Rarely Worn (+1)", effect: 1, desc: "High waste per use." },
-      { text: "Regular (+2)", effect: 2, desc: "Better lifespan." },
-      { text: "Repaired (+3)", effect: 3, desc: "Extends clothing life." }
+      { text: "Rarely Worn", effect: 1, desc: "High waste per use." },
+      { text: "Regular", effect: 2, desc: "Better lifespan." },
+      { text: "Repaired", effect: 3, desc: "Extends clothing life." }
     ]
   },
   {
     title: "Level 6: End of Life",
     description: "What happens next?",
     options: [
-      { text: "Thrown Away (+1)", effect: 1, desc: "Landfill waste." },
-      { text: "Donated (+2)", effect: 2, desc: "Reused by others." },
-      { text: "Upcycled (+3)", effect: 3, desc: "Transformed into new items." }
+      { text: "Thrown Away", effect: 1, desc: "Landfill waste." },
+      { text: "Donated", effect: 2, desc: "Reused by others." },
+      { text: "Upcycled", effect: 3, desc: "Transformed into new items." }
     ]
   }
 ];
